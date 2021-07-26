@@ -5,7 +5,6 @@
 
 namespace vga
 {
-
   struct
   {
     enum
