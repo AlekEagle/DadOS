@@ -24,7 +24,7 @@ namespace std
     printf("#");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
     printf(" ] ");
-    printf(format, parameters);
+    vprintf(format, parameters);
     printf("\n");
   }
 
@@ -37,7 +37,7 @@ namespace std
     printf("?");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
     printf(" ] ");
-    printf(format, parameters);
+    vprintf(format, parameters);
     printf("\n");
   }
 
@@ -50,7 +50,7 @@ namespace std
     printf("/");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
     printf(" ] ");
-    printf(format, parameters);
+    vprintf(format, parameters);
     printf("\n");
   }
 
@@ -63,7 +63,7 @@ namespace std
     printf("-");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
     printf(" ] ");
-    printf(format, parameters);
+    vprintf(format, parameters);
     printf("\n");
   }
 
@@ -76,7 +76,7 @@ namespace std
     printf("\x1E");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
     printf(" ] ");
-    printf(format, parameters);
+    vprintf(format, parameters);
     printf("\n");
   }
 
@@ -89,7 +89,7 @@ namespace std
     printf("!");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
     printf(" ] ");
-    printf(format, parameters);
+    vprintf(format, parameters);
     printf("\n");
   }
 }

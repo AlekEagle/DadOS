@@ -11,7 +11,7 @@ extern "C" namespace std
 #endif
 
   int putchar(int);
-  void _putchar(int);
+  void _putchar(char);
   int puts(const char *);
 
 #ifdef __cplusplus

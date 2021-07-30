@@ -83,20 +83,20 @@ divide_by_zero_fault_asm:
     destruct_frame
     iretq
 
-global keyboard_input_asm
-extern keyboard_input
-keyboard_input_asm:
-    no_err_code 33
-    construct_frame
-    call keyboard_input
-    destruct_frame
-    iretq
-
 global double_fault_asm
 extern double_fault
 double_fault_asm:
     err_code 8
     construct_frame
     call double_fault
+    destruct_frame
+    iretq
+
+global keyboard_input_asm
+extern keyboard_input
+keyboard_input_asm:
+    no_err_code 33
+    construct_frame
+    call keyboard_input
     destruct_frame
     iretq

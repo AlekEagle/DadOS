@@ -9,9 +9,8 @@ namespace std
     return ic;
   }
 
-  void _putchar(int ic)
+  void _putchar(char c)
   {
-    char c = (char)ic;
     tty::write(&c, sizeof(c));
   }
 }

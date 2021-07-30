@@ -1,4 +1,3 @@
-#include <printf.h>
 #include <tty.h>
 #include <stdlog.h>
 #include <serial.h>
@@ -7,6 +6,7 @@
 #include <sys/idt.h>
 #include <sys/gdt.h>
 #include <string.h>
+#include <tostring.h>
 
 #define Joe (uintptr_t)(void *)
 
