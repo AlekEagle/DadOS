@@ -1,5 +1,5 @@
 #include <stdlog.h>
-#include <stdio.h>
+#include <printf.h>
 #include <tty.h>
 #include <stdarg.h>
 #include <vga.h>
@@ -19,71 +19,77 @@ namespace std
   {
     va_list parameters;
     va_start(parameters, format);
-    std::printf("[ ");
+    printf("[ ");
     tty::setColor(vga::entryColor(vga::color.GREEN, vga::color.BLACK));
-    std::printf("#");
+    printf("#");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf(" ] ");
-    std::println(format, parameters);
+    printf(" ] ");
+    printf(format, parameters);
+    printf("\n");
   }
 
   void info(const char *format, ...)
   {
     va_list parameters;
     va_start(parameters, format);
-    std::printf("[ ");
+    printf("[ ");
     tty::setColor(vga::entryColor(vga::color.DARK_GREY, vga::color.BLACK));
-    std::printf("?");
+    printf("?");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf(" ] ");
-    std::println(format, parameters);
+    printf(" ] ");
+    printf(format, parameters);
+    printf("\n");
   }
 
   void success(const char *format, ...)
   {
     va_list parameters;
     va_start(parameters, format);
-    std::printf("[ ");
+    printf("[ ");
     tty::setColor(vga::entryColor(vga::color.LIGHT_GREEN, vga::color.BLACK));
-    std::printf("/");
+    printf("/");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf(" ] ");
-    std::println(format, parameters);
+    printf(" ] ");
+    printf(format, parameters);
+    printf("\n");
   }
 
   void debug(const char *format, ...)
   {
     va_list parameters;
     va_start(parameters, format);
-    std::printf("[ ");
+    printf("[ ");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf("-");
+    printf("-");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf(" ] ");
-    std::println(format, parameters);
+    printf(" ] ");
+    printf(format, parameters);
+    printf("\n");
   }
 
   void warn(const char *format, ...)
   {
     va_list parameters;
     va_start(parameters, format);
-    std::printf("[ ");
+    printf("[ ");
     tty::setColor(vga::entryColor(vga::color.LIGHT_RED, vga::color.BLACK));
-    std::printf("\x1E");
+    printf("\x1E");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf(" ] ");
-    std::println(format, parameters);
+    printf(" ] ");
+    printf(format, parameters);
+    printf("\n");
   }
 
   void error(const char *format, ...)
   {
     va_list parameters;
     va_start(parameters, format);
-    std::printf("[ ");
+    printf("[ ");
     tty::setColor(vga::entryColor(vga::color.RED, vga::color.BLACK));
-    std::printf("!");
+    printf("!");
     tty::setColor(vga::entryColor(vga::color.WHITE, vga::color.BLACK));
-    std::printf(" ] ");
-    std::println(format, parameters);
+    printf(" ] ");
+    printf(format, parameters);
+    printf("\n");
   }
 }

@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <printf.h>
 #include <stdlib.h>
 
 namespace std

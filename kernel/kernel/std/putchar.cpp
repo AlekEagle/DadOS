@@ -8,4 +8,10 @@ namespace std
     tty::write(&c, sizeof(c));
     return ic;
   }
+
+  void _putchar(int ic)
+  {
+    char c = (char)ic;
+    tty::write(&c, sizeof(c));
+  }
 }

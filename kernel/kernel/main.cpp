@@ -1,34 +1,39 @@
-#include <stdio.h>
+#include <printf.h>
 #include <tty.h>
-#include <vga.h>
 #include <stdlog.h>
+#include <serial.h>
+#include <bio.h>
+#include <interrupts.h>
 #include <sys/idt.h>
+#include <sys/gdt.h>
+#include <string.h>
 
-void load_idt(InterruptDescriptorPointer *idt_r)
-{
-  __asm__("lidt %0" ::"m"(*idt_r));
-}
+#define Joe (uintptr_t)(void *)
 
 extern "C" void kernel_main(void)
 {
-
+  gdt::init();
+  idt::init();
+  serial::init(serial::ports.COM1);
+  idt::set_descriptor(0, Joe divide_by_zero_fault_asm, IDT_DESCRIPTOR_EXCEPTION, 0);
+  idt::set_descriptor(8, Joe double_fault_asm, IDT_DESCRIPTOR_EXCEPTION, 0);
+  idt::set_descriptor(33, Joe keyboard_input_asm, IDT_DESCRIPTOR_EXTERNAL, 0);
+  idt::reload();
   tty::init();
-  std::log("Initialized Display");
-  std::success("Loaded into kernel");
+  std::log("Initializing Display");
   std::log("Initializing I/O");
-  std::error("FATAL: Unable to initilize I/O (its not done yet)");
-  std::success("Welcome to DadOS");
-  std::println("");
-  std::println("Testing of stdlog.cpp: ");
+  std::error("FATAL: Unable to initialize I/O (its not done yet)");
+  std::success("Kernel loaded");
+  tty::lineBreak();
+  bio::outb(0x21, 0xfd);
+  bio::outb(0xa1, 0xff);
+  asm volatile("int $00");
 
-  std::info("Info");
-  std::log("Log");
-  std::debug("Debug");
-  std::success("Success/Done/Completed");
-  std::warn("Warn/Warning");
-  std::error("Error/Failure");
-  InterruptDescriptorPointer idk = {1, idt};
-  load_idt(&idk);
+  std::success("Kernel code execution finished.");
+
+  asm volatile("sti");
+
+  return;
 }
 
 /*

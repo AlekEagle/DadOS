@@ -1,5 +1,5 @@
 #ifndef _STDLOG_H
-#define _STDLOG_H 1
+#define _STDLOG_H
 
 #include <sys/cdefs.h>
 

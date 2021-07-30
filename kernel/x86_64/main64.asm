@@ -1,7 +1,6 @@
 global long_mode_start
+global enable_external_interrupts
 extern kernel_main
-extern stop_being_dumb
-
 
 section .text
 bits 64
@@ -16,3 +15,8 @@ long_mode_start:
     call kernel_main
 
     hlt
+
+enable_external_interrupts:
+    sti
+
+    iretq

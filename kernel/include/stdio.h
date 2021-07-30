@@ -1,5 +1,5 @@
 #ifndef _STDIO_H
-#define _STDIO_H 1
+#define _STDIO_H
 
 #include <sys/cdefs.h>
 
@@ -10,10 +10,9 @@ extern "C" namespace std
 {
 #endif
 
-  int printf(const char *__restrict, ...);
   int putchar(int);
+  void _putchar(int);
   int puts(const char *);
-  int println(const char *__restrict, ...);
 
 #ifdef __cplusplus
 }

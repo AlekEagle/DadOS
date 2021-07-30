@@ -48,6 +48,11 @@ namespace tty
 
   void putChar(char c)
   {
+    if (c == '\n')
+    {
+      lineBreak();
+      return;
+    }
     unsigned char uc = c;
     entryAt(uc, terminal_color, terminal_column, terminal_row);
     if (++terminal_column == VGA_WIDTH)
