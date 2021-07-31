@@ -12,9 +12,13 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+printf "[ \033[36m#\033[39m ] Installing required packages...\n"
+
+apt install libtool-bin xorriso nasm mtools -y > /dev/null 2>&1
+
 printf "[ \033[36m#\033[39m ] Building toolchain is now in progress!\n"
 rm -rf /tmp/gmp* /tmp/mpfr* /tmp/binutils* /tmp/gcc* /tmp/mpc* > /dev/null 2>&1
-mkdir /tmp/gmp-build /tmp/mpfr-build /tmp/binutils-build /tmp/gcc-build /tmp/mpc-build  > /dev/null 2>&1
+mkdir /tmp/gmp-build /tmp/mpfr-build /tmp/binutils-build /tmp/gcc-build /tmp/mpc-build > /dev/null 2>&1
 cd /tmp/
 printf "[ \033[36m#\033[39m ] Downloading and unpacking GMP v$CURRENT_GMP_VERSION (1/10 tasks)\n"
 curl -o /tmp/gmp-$CURRENT_GMP_VERSION.tar.xz https://ftp.gnu.org/gnu/gmp/gmp-$CURRENT_GMP_VERSION.tar.xz > /dev/null 2>&1

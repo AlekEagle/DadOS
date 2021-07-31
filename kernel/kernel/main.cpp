@@ -31,6 +31,7 @@ extern "C" void kernel_main(void)
   tty::init();
   std::log("Initializing Display");
   std::log("Initializing I/O");
+  asm volatile("sti");
   std::success("Kernel loaded.");
   std::success("Welcome to DadOS!");
   tty::lineBreak();
@@ -40,9 +41,7 @@ extern "C" void kernel_main(void)
 
   std::success("Kernel code execution finished.");
 
-  asm volatile("sti");
-
-  // kernel_loop();
+  kernel_loop();
 
   return;
 }

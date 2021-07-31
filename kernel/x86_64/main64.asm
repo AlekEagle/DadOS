@@ -15,8 +15,3 @@ long_mode_start:
     call kernel_main
 
     hlt
-
-enable_external_interrupts:
-    sti
-
-    iretq
