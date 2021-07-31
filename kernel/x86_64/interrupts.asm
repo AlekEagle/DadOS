@@ -92,6 +92,15 @@ double_fault_asm:
     destruct_frame
     iretq
 
+global general_protection_fault_asm
+extern general_protection_fault
+general_protection_fault_asm:
+    err_code 13
+    construct_frame
+    call general_protection_fault
+    destruct_frame
+    iretq
+
 global keyboard_input_asm
 extern keyboard_input
 keyboard_input_asm:

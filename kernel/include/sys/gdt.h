@@ -27,6 +27,8 @@
 #define GDT_OFFSET_USER_DATA (0x03 * 0x08)
 #define GDT_OFFSET_USER_CODE (0x04 * 0x08)
 
+#define TSS_SIZE 0x70
+
 namespace gdt
 {
   typedef struct
@@ -41,6 +43,18 @@ namespace gdt
 
   typedef struct
   {
+    uint16_t limit_0;
+    uint16_t addr_0;
+    uint8_t addr_1;
+    uint8_t type_0;
+    uint8_t limit_1;
+    uint8_t addr_2;
+    uint32_t addr_3;
+    uint32_t reserved;
+  } __attribute__((packed)) tss_desc_t;
+
+  typedef struct
+  {
     uint16_t limit;
     uintptr_t base;
   } __attribute__((packed)) ptr_t;
@@ -48,6 +62,7 @@ namespace gdt
   void add_descriptor(uint64_t base, uint16_t limit, uint8_t access, uint8_t granularity);
   void reload(void);
   void init(void);
+  uint16_t install_tss(uint64_t tss);
 }
 
 #endif

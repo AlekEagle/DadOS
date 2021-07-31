@@ -45,4 +45,26 @@ namespace gdt
 
     gindex++;
   }
+
+  uint16_t install_tss(uint64_t tss)
+  {
+    uint8_t tss_type = GDT_DESCRIPTOR_ACCESS | GDT_DESCRIPTOR_EXECUTABLE | GDT_DESCRIPTOR_PRESENT;
+
+    tss_desc_t *tss_desc = (tss_desc_t *)&gdtd[gindex];
+
+    if (gindex >= GDT_MAX_DESCRIPTORS)
+      return 0;
+
+    tss_desc->limit_0 = TSS_SIZE & 0xFFFF;
+    tss_desc->addr_0 = tss & 0xFFFF;
+    tss_desc->addr_1 = (tss & 0xFF0000) >> 16;
+    tss_desc->type_0 = tss_type;
+    tss_desc->limit_1 = (TSS_SIZE & 0xF0000) >> 16;
+    tss_desc->addr_2 = (tss & 0xFF000000) >> 24;
+    tss_desc->addr_3 = tss >> 32;
+    tss_desc->reserved = 0;
+
+    gindex += 2;
+    return (gindex - 2) * GDT_DESCRIPTOR_SIZE;
+  }
 }
